@@ -6,6 +6,7 @@ import dev.jorgeflores.messagingapp.service.MessageService;
 import dev.jorgeflores.messagingapp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,6 +64,12 @@ public class UserController {
     public List<Message> getReceivedMessagesByUid(@PathVariable Long uid) {
         LOG.info(format("Retrieving received messages by uid=%s", uid));
         return messageService.findByReceiverUid(uid);
+    }
+
+    @GetMapping("/{uid}/messages/received/{senderUid}")
+    public List<Message> getReceivedMessagesBySenderAndReceiver(@PathVariable Long uid, @PathVariable Long senderUid) {
+        LOG.info(format("Retrieving received messages by sender uid=%s and receiver uid=%s", senderUid, uid));
+        return messageService.findBySenderUidAndReceiverUid(senderUid, uid);
     }
 
     @PostMapping("/{uid}/messages")

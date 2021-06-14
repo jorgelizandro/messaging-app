@@ -44,6 +44,12 @@ public class MessageService {
                 .collect(toList());
     }
 
+    public List<Message> findBySenderUidAndReceiverUid(Long senderUid, Long receiverUid) {
+        return messageRepository.findBySenderUidAndReceiverUid(senderUid, receiverUid).stream()
+                .map(MessageEntity::mapToDto)
+                .collect(toList());
+    }
+
     public Message saveMessage(Message message) {
         MessageEntity messageEntity = message.mapToEntity();
         MessageEntity savedMessage = messageRepository.save(messageEntity);

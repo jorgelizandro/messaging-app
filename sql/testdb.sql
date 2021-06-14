@@ -1,20 +1,14 @@
+-- Create database
 CREATE DATABASE testdb;
+\connect testdb;
 
-DROP TABLE message;
-DROP TABLE user_account;
-
+-- Create tables
 CREATE TABLE user_account (
     uid SERIAL PRIMARY KEY,
     nickname VARCHAR(50) UNIQUE NOT NULL,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
-INSERT INTO user_account(nickname) VALUES('testuser1');
-INSERT INTO user_account(nickname) VALUES('testuser2');
-
-SELECT *
-FROM user_account;
 
 CREATE TABLE message (
     message_id SERIAL PRIMARY KEY,
@@ -24,6 +18,15 @@ CREATE TABLE message (
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Insert testing data
+
+INSERT INTO user_account(nickname) VALUES('testuser1');
+INSERT INTO user_account(nickname) VALUES('testuser2');
+
+SELECT *
+FROM user_account;
+
 
 INSERT INTO message(sender_uid, receiver_uid, content) VALUES(1, 2, 'This is a test message 1');
 INSERT INTO message(sender_uid, receiver_uid, content) VALUES(1, 2, 'This is a test message 2');

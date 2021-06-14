@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class MessagingAppApplication {
+public class MessagingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MessagingAppApplication.class, args);
+		SpringApplication.run(MessagingApplication.class, args);
 	}
 }

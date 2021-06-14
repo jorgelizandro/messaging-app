@@ -1,6 +1,8 @@
-# Dev commands
+# Dev utils
 
 ## Connect to Postgres
     docker exec -it postgres sh
     psql testdb testuser changeit
-    psql -h localhost -p 5432 -U testuser testdb
+
+## Kafka-ui
+    http://localhost:8090/
