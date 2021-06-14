@@ -19,8 +19,7 @@ public class KafkaConsumerService {
         this.messageService = messageService;
     }
 
-    //@KafkaListener(topics = "${kafka.group.id}", groupId = "${kafka.group.id}")
-    @KafkaListener(topics = "mAppMessage", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "#{'${kafka.topic.name}'}", containerFactory = "kafkaListenerContainerFactory")
     public void consume(KafkaMessage kafkaMessage) {
         LOG.info(format("Received kafka message suid=%d ruid=%d",
                 kafkaMessage.getSenderUid(),
